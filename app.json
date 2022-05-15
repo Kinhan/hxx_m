@@ -1,0 +1,20 @@
+{
+  "name": "hxx",
+  "description": "hxx",
+  "keywords": [
+    "hxx"
+  ],
+  "env": {
+    "UUID": {
+      "description": "用户的主ID",
+      "value": "24b4b1e1-7a89-45f6-858c-242cf53b5bdb",
+      "required": true
+    }
+  },
+  "website": "https://github.com/Kinhan/hxx",
+  "repository": "https://github.com/Kinhan/hxx",
+  "stack": "container",
+  "features": [
+    "runtime-dyno-metadata"
+  ]
+}
