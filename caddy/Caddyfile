@@ -14,7 +14,7 @@ header Connection *Upgrade*
 header Upgrade    websocket
 path /vm
 }
-reverse_proxy @websocket_xx_vm 127.0.0.1:18080
+reverse_proxy @websocket_xx_vm unix//etc/caddy/vm
 
 
 @websocket_xx_vl {

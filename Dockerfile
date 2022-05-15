@@ -15,4 +15,4 @@ RUN apk update && \
     rm -rf /var/cache/apk/*
 
 RUN chmod +x /configure.sh
-CMD sed -e "s/\$UUID/$UUID/g" /xx.json > /xx/config_temp.json && sed -e "s/\$PORT/$PORT/g" /xx/config_temp.json > /xx/config.json && sed -e "1c :$PORT" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && /configure.sh
+CMD sed -e "s/\$UUID/$UUID/g" /xx.json > /xx/config.json && sed -e "1c :$PORT" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && /configure.sh

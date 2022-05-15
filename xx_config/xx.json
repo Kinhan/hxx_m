@@ -1,143 +1,37 @@
 {
-  "inbounds": [
+    "inbounds":
+    [
+        {
+            "listen": "/etc/caddy/vm","protocol": "vmess",
+            "settings": {"clients": [{"id": "$UUID"}],"decryption": "none"},
+            "streamSettings": {"network": "ws","wsSettings": {"path": "/vm"}}
+        },
+        {
+            "listen": "/etc/caddy/vl","protocol": "vless",
+            "settings": {"clients": [{"id": "$UUID"}],"decryption": "none"},
+            "streamSettings": {"network": "ws","wsSettings": {"path": "/vl"}}
+        },
+        {   "port": 5234,"listen": "127.0.0.1","protocol": "socks",
+            "settings": {"auth": "password","accounts": [{"user": "$UUID","pass": "$UUID"}]},
+            "streamSettings": {"network": "ws","wsSettings": {"path": "/s"}}
+        }
+    ],
+
+    "outbounds":
+    [
+        {"protocol": "freedom","tag": "direct","settings": {}},
+        {"protocol": "blackhole","tag": "blocked","settings": {}},
+        {"protocol": "socks","tag": "sockstor","settings": {"servers": [{"address": "127.0.0.1","port": 9050}]}},
+        {"protocol": "freedom","tag": "twotag","streamSettings": {"network": "domainsocket","dsSettings": {"path": "apath","abstract": true}}}
+    ],
+
+    "routing":
     {
-      "port": $PORT,
-      "listen": "127.0.0.1",
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "$UUID"
-          }
+        "rules":
+        [
+            {"type": "field","inboundTag": ["onetag"],"outboundTag": "twotag"},
+            {"type": "field","outboundTag": "sockstor","domain": ["geosite:tor"]},
+            {"type": "field","outboundTag": "blocked","domain": ["geosite:category-ads-all"]}
         ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "tcpSettings": {
-          "header": {
-            "type": "http",
-            "response": {
-              "version": "1.1",
-              "status": "200",
-              "reason": "OK",
-              "headers": {
-                "Content-Type": [
-                  "application/octet-stream",
-                  "video/mpeg",
-                  "application/x-msdownload",
-                  "text/html",
-                  "application/x-shockwave-flash"
-                ],
-                "Transfer-Encoding": [
-                  "chunked"
-                ],
-                "Connection": [
-                  "keep-alive"
-                ],
-                "Pragma": "no-cache"
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "listen": "/etc/caddy/vl",
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "id": "$UUID"
-          }
-        ],
-        "decryption": "none"
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/vl"
-        }
-      }
-    },
-    {
-      "port": 5234,
-      "listen": "127.0.0.1",
-      "protocol": "socks",
-      "settings": {
-        "auth": "password",
-        "accounts": [
-          {
-            "user": "$UUID",
-            "pass": "$UUID"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/s"
-        }
-      }
     }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "tag": "direct",
-      "settings": {}
-    },
-    {
-      "protocol": "blackhole",
-      "tag": "blocked",
-      "settings": {}
-    },
-    {
-      "protocol": "socks",
-      "tag": "sockstor",
-      "settings": {
-        "servers": [
-          {
-            "address": "127.0.0.1",
-            "port": 9050
-          }
-        ]
-      }
-    },
-    {
-      "protocol": "freedom",
-      "tag": "twotag",
-      "streamSettings": {
-        "network": "domainsocket",
-        "dsSettings": {
-          "path": "apath",
-          "abstract": true
-        }
-      }
-    }
-  ],
-  "routing": {
-    "rules": [
-      {
-        "type": "field",
-        "inboundTag": [
-          "onetag"
-        ],
-        "outboundTag": "twotag"
-      },
-      {
-        "type": "field",
-        "outboundTag": "sockstor",
-        "domain": [
-          "geosite:tor"
-        ]
-      },
-      {
-        "type": "field",
-        "outboundTag": "blocked",
-        "domain": [
-          "geosite:category-ads-all"
-        ]
-      }
-    ]
-  }
 }
