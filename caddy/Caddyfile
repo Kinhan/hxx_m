@@ -1,3 +1,33 @@
 :$PORT
 root * /usr/share/caddy
-reverse_proxy unix//etc/caddy/vm
+file_server browse
+
+header {
+    X-Robots-Tag none
+    X-Content-Type-Options nosniff
+    X-Frame-Options SAMEORIGIN
+    Referrer-Policy no-referrer-when-downgrade
+}
+
+@websocket_xx_vm {
+header Connection *Upgrade*
+header Upgrade    websocket
+path /vm
+}
+reverse_proxy @websocket_xx_vm 127.0.0.1:18080
+
+
+@websocket_xx_vl {
+header Connection *Upgrade*
+header Upgrade    websocket
+path /vl
+}
+reverse_proxy @websocket_xx_vl unix//etc/caddy/vl
+
+@websocket_xx_s {
+header Connection *Upgrade*
+header Upgrade    websocket
+path /s
+}
+reverse_proxy @websocket_xx_s 127.0.0.1:5234
+

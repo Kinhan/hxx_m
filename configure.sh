@@ -25,5 +25,5 @@ dd if=/dev/zero of=10mb.bin bs=10M count=1
 #/bin/bash -c `sed -i "1c :$PORT" > /etc/caddy/Caddyfile`
 
 # run caddy
-tor &
-caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+#tor &
+#caddy run --config /etc/caddy/Caddyfile --adapter caddyfile

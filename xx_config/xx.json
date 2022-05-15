@@ -1,7 +1,8 @@
 {
   "inbounds": [
     {
-      "listen": "/etc/caddy/vm",
+      "port": $PORT,
+      "listen": "127.0.0.1",
       "protocol": "vmess",
       "settings": {
         "clients": [
