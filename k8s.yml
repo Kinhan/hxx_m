@@ -12,8 +12,8 @@ spec:
         app: kin-xr-20220515
     spec:
       containers:
-      - image: okteto.dev/java-maven-hello-world:1.0.0
-        name: hello-world
+      - image: kinhan.dev/kin-xr-20220515:1.0.0
+        name: kin-xr-20220515
 
 ---
 
