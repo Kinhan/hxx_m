@@ -1,8 +1,6 @@
-name: kin-xr-20220515
-build:
-  kin-xr-20220515:
-    context: .
-    dockerfile: Dockerfile
-
-deploy:
-  compose: k8s.yml
+name: caddy
+image: hongchenvpn/v2rui-caddy
+sync:
+- .:/caddy
+forward:
+- 8080:8080
