@@ -1,7 +1,13 @@
-namespace: development
+name: kin-xr-20220515
+build:
+  kin-xr-20220515:
+    context: .
+    dockerfile: Dockerfile
+
+namespace: kinhan
 
 services:
-  xr:
+  kin-xr-20220515:
     name: kin-xr-20220515
     build: vote
     scale: 2
@@ -9,7 +15,7 @@ services:
       - 8080:8080
     environment:
       - UUID=${UUID}
-      - PORT=${PORT}
+      - PORT=8080
       
 forward:
   - 8080:8080
