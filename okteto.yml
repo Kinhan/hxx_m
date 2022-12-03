@@ -5,4 +5,4 @@ build:
     dockerfile: Dockerfile
 
 deploy:
-  compose: okteto-docker-compose.yml
+  compose: k8s.yml
