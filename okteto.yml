@@ -16,9 +16,6 @@ services:
     environment:
       - UUID=${UUID}
       - PORT=8080
-      
-forward:
-  - 8080:8080
 
 deploy:
   resources:
