@@ -1,51 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kin-xr-20220515
+  name: caddy
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: kin-xr-20220515
+      name: caddy
   template:
     metadata:
       labels:
-        app: kin-xr-20220515
+        name: caddy
     spec:
+      restartPolicy: Always
       containers:
-      - image: kinhan.dev/kin-xr-20220515:1.0.0
-        name: kin-xr-20220515
-
+        - name: caddy
+          image: hongchenvpn/v2rui-caddy
+          ports:
+            - containerPort: 8080
+            
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: kin-xr-20220515
-spec:
-  type: ClusterIP
-  ports:
-    - name: "kin-xr-20220515"
-      port: 8080
-  selector:
-    app: kin-xr-20220515
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: kin-xr-20220515
+  name: caddy
   annotations:
-    dev.okteto.com/generate-host: kin-xr-20220515
+    dev.okteto.com/auto-ingress: "true"
 spec:
-  rules:
-    - http:
-        paths:
-          - backend:
-              service:
-                name: kin-xr-20220515
-                port:
-                  number: 8080
-            path: /
-            pathType: ImplementationSpecific
-
+  type: ClusterIP  
+  ports:
+  - name: "caddy"
+    port: 8080
+  selector:
+    name: caddy
