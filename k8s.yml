@@ -15,7 +15,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: hxx
-          image: kinhanlin/hxx:v1.2
+          image: kinhanlin/hxx:v1.3
           ports:
             - containerPort: 8080
             
