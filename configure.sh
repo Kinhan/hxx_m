@@ -27,3 +27,6 @@ dd if=/dev/zero of=10mb.bin bs=10M count=1
 # run caddy
 tor &
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+
+cat /xx/config.json
+cat /etc/caddy/Caddyfile
