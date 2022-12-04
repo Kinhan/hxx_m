@@ -22,4 +22,4 @@ ENV port=${port} \
 
 RUN chmod +x /xx/configure.sh
 EXPOSE 8080
-CMD sed -e "s/\$UUID/5a92dcf2-5ea4-474d-a491-145cac7e7f16/g" /xx.json > /xx/config.json && sed -e "1c :8080" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && /bin/sh /xx/configure.sh
+CMD sed -e "s/\$UUID/5a92dcf2-5ea4-474d-a491-145cac7e7f16/g" /xx.json > /xx/config.json && sed -e "1c :8080" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && sh /xx/configure.sh
