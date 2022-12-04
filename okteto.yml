@@ -1,5 +1,5 @@
 name: hxx
-image: kinhanlin/hxx:V1.0
+image: kinhanlin/hxx
 sync:
 - .:/hxx
 forward:
