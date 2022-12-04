@@ -1,7 +1,7 @@
 FROM php:7-fpm-alpine
 COPY xx.zip /xx/xx.zip
 COPY caddy/static-html /usr/share/caddy/
-COPY caddy/h5-speedtest /usr/share/caddy/speedtest/
+COPY caddy/h5-st /usr/share/caddy/st/
 COPY caddy/Caddyfile /etc/caddy/CaddyfileTemp
 #COPY nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
 #COPY nginx/nginx.conf /etc/nginx/nginx.conf

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
-<title>HTML5 Speedtest</title>
+<title>HTML5 st</title>
 <style type="text/css">
 	html,body{
 		border:none; padding:0; margin:0;
@@ -173,12 +173,12 @@ function msToAmount(s){
 	return 1-(1/(Math.pow(1.08,Math.sqrt(s))));
 }
 
-//SPEEDTEST AND UI CODE
-var w=null; //speedtest worker
+//st AND UI CODE
+var w=null; //st worker
 var data=null; //data from worker
 function startStop(){
 	if(w!=null){
-		//speedtest is running, abort
+		//st is running, abort
 		w.postMessage('abort');
 		w=null;
 		data=null;
@@ -186,7 +186,7 @@ function startStop(){
 		initUI();
 	}else{
 		//test is not running, begin
-		w=new Worker('speedtest_worker.min.js');
+		w=new Worker('st_worker.min.js');
 		w.postMessage('start'); //Add optional parameters as a JSON object to this command
 		I("startStopBtn").className="running";
 		w.onmessage=function(e){
@@ -245,7 +245,7 @@ function initUI(){
 </script>
 </head>
 <body>
-<h1>HTML5 Speedtest</h1>
+<h1>HTML5 st</h1>
 <div id="startStopBtn" onclick="startStop()"></div>
 <div id="test">
 	<div class="testGroup">
