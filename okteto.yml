@@ -3,4 +3,4 @@ image: hongchenvpn/v2rui-caddy
 sync:
 - .:/caddy
 forward:
-- 8080:8080
+- 443:8080
