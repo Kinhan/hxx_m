@@ -1,6 +1,7 @@
 :$PORT
 root * /usr/share/caddy
 file_server browse
+encode gzip
 
 header {
     X-Robots-Tag none
@@ -9,31 +10,20 @@ header {
     Referrer-Policy no-referrer-when-downgrade
 }
 
-reverse_proxy /vm {
-    to unix//etc/caddy/vm
-    header Connection *Upgrade*
-    header Upgrade    websocket
+reverse_proxy /vm unix//etc/caddy/vm {
+    header_up +Connection
+    header_up +Upgrade
+    header_up -Origin
 }
 
 reverse_proxy /vl {
     to unix//etc/caddy/vl
-    header Connection *Upgrade*
-    header Upgrade    websocket
+    header_up +Connection (*)Upgrade(*) $1Upgrade$2
+    header_up +Upgrade websocket
 }
-
-@websocket_xx_s {
-header Connection *Upgrade*
-header Upgrade    websocket
-path /s
-}
-reverse_proxy @websocket_xx_s 127.0.0.1:5234
 
 reverse_proxy /s {
     to 127.0.0.1:5234
-    header Connection *Upgrade*
-    header Upgrade    websocket
-}
-
-reverse_proxy /tttt {
-    to www.baidu.com
+    header_up +Connection (*)Upgrade(*) $1Upgrade$2
+    header_up +Upgrade websocket
 }
