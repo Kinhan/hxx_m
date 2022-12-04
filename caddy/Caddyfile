@@ -2,8 +2,6 @@
 root * /usr/share/caddy
 file_server browse
 
-reverse_proxy @websocket_xx_vm unix//etc/caddy/vm
-
 header {
     X-Robots-Tag none
     X-Content-Type-Options nosniff
