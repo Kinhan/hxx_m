@@ -1,7 +1,7 @@
-name: caddy
-image: hongchenvpn/v2rui-caddy
+name: hxx
+image: kinhanlin/hxx
 sync:
-- .:/caddy
+- .:/hxx
 forward:
 - 443:8080
 - 80:8080

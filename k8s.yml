@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: caddy
+  name: hxx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: caddy
+      name: hxx
   template:
     metadata:
       labels:
-        name: caddy
+        name: hxx
     spec:
       restartPolicy: Always
       containers:
-        - name: caddy
-          image: hongchenvpn/v2rui-caddy
+        - name: hxx
+          image: kinhanlin/hxx
           ports:
             - containerPort: 8080
             
@@ -23,13 +23,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: caddy
+  name: hxx
   annotations:
     dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP  
   ports:
-  - name: "caddy"
+  - name: "hxx"
     port: 8080
   selector:
-    name: caddy
+    name: hxx
