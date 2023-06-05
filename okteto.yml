@@ -2,4 +2,5 @@ services:
   hxx:
     build: .
     shm_size: 2.6gb
-    port: $PORT
+    ports:
+      - "80:80"
