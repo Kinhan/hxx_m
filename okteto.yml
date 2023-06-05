@@ -1,16 +1,6 @@
-name: hxx
 services:
   hxx:
-    labels:
-      dev.okteto.com/private: "true"
-    build: hxx
-    port:
-      - 80:80
-      - 8080:8080
-      - 443:443
-sync:
-  - .:/hxx
-forward:
-  - 443:443
-  - 80:80
-  - 8080:80
+    build: .
+    shm_size: 2.6gb
+    ports:
+      - "80:80"
