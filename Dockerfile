@@ -1,12 +1,4 @@
 FROM php:7-fpm-alpine
-
-RUN apk update && \
-    apk add --no-cache ca-certificates tor wget ca-certificates bash curl caddy && \
-    unzip /xx/xx.zip -d /xx/ && \
-    chmod +x /xx/xx && \
-    chmod +x /xx/v2ctl && \
-    rm -rf /var/cache/apk/*
-
 COPY xx.zip /xx/xx.zip
 COPY caddy/static-html /usr/share/caddy/
 COPY caddy/h5-st /usr/share/caddy/st/
@@ -14,6 +6,12 @@ COPY caddy/h5-st /usr/share/caddy/st/
 #COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY configure.sh /xx/configure.sh
 COPY xx_config /
+RUN apk update && \
+    apk add --no-cache ca-certificates tor wget ca-certificates bash curl caddy && \
+    unzip /xx/xx.zip -d /xx/ && \
+    chmod +x /xx/xx && \
+    chmod +x /xx/v2ctl && \
+    rm -rf /var/cache/apk/*
 COPY caddy/Caddyfile /etc/caddy/CaddyfileTemp
 
 ARG port
