@@ -22,5 +22,6 @@ ENV PORT=${PORT} \
 
 RUN chmod +x /xx/configure.sh
 EXPOSE ${PORT}
-
+EXPOSE 80
+EXPOSE 443
 CMD sed -e "s/\$UUID/$UUID/g" /xx.json > /xx/config.json && sed -e "s/\$PORT/$PORT/g" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && sh /xx/configure.sh
