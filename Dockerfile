@@ -16,8 +16,10 @@ COPY caddy/Caddyfile /etc/caddy/CaddyfileTemp
 
 ARG PORT
 ARG UUID
+ARG HOST
 
 ENV PORT=${PORT} \
+    HOST=${HOST} \
     UUID=${UUID}
 
 RUN chmod +x /xx/configure.sh
