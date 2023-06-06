@@ -14,12 +14,12 @@ RUN apk update && \
     rm -rf /var/cache/apk/*
 COPY caddy/Caddyfile /etc/caddy/CaddyfileTemp
 
-ARG port
-ARG uuid
+ARG PORT
+ARG UUID
 
 ENV PORT=${PORT} \
     UUID=${UUID}
 
 RUN chmod +x /xx/configure.sh
 EXPOSE ${PORT}
-CMD sed -e "s/\$UUID/$UUID/g" /xx.json > /xx/config.json && sed -e "1c :$PORT" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && sh /xx/configure.sh
+CMD sed -e "s/\$UUID/$UUID/g" /xx.json > /xx/config.json && sed -e "1c $HOST" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && sh /xx/configure.sh
