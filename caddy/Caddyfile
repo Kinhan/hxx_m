@@ -1,3 +1,4 @@
+:$PORT
 auto_https off
 root * /usr/share/caddy
 file_server browse
