@@ -3,7 +3,7 @@ services:
     build: .
     shm_size: 2.6gb
     ports:
-      - "80:${PORT}"
+      - "${PORT}:${PORT}"
     environment:
       - PORT=${PORT}
       - UUID=${UUID}
