@@ -16,12 +16,10 @@ COPY caddy/Caddyfile /etc/caddy/CaddyfileTemp
 
 ARG PORT
 ARG UUID
-ARG HOST
 
 ENV PORT=${PORT} \
-    HOST=${HOST} \
     UUID=${UUID}
 
 RUN chmod +x /xx/configure.sh
 EXPOSE ${PORT}
-CMD sed -e "s/\$UUID/$UUID/g" /xx.json > /xx/config.json && sed -e "1c $HOST" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && sh /xx/configure.sh
+CMD sed -e "s/\$UUID/$UUID/g" /xx.json > /xx/config.json && sed -e "s/\$PORT/$PORT/g" /etc/caddy/CaddyfileTemp > /etc/caddy/Caddyfile && sh /xx/configure.sh
