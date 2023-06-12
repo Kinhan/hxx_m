@@ -18,6 +18,8 @@ dd if=/dev/zero of=100mb.bin bs=100M count=1
 dd if=/dev/zero of=10mb.bin bs=10M count=1
 cat /xx/config.json
 cat /etc/caddy/Caddyfile
+rm -rf /etc/caddy/vm*
+rm -rf /etc/caddy/vl*
 # Run xx
 /xx/xx -config /xx/config.json &
 ## Run caddy
